@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task List</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="task__actions">
+            <div class="card">
+                <h1>Task List</h1>
+                <form id="task-form">
+                    <div>
+                        <input type="text" name="task" id="task">
+                        <label for="task">New Task</label>
+                    </div>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+        <div class="task__list">
+            <h5 id="task-title">Tasks List</h5>
+            <div>
+                <input type="text" name="filter" id="filter">
+            </div>
+            <ul class="collection">
+                
+            </ul>
+            <a href="#" class="clear-tasks">Clear Tasks</a>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+
+</html>
