@@ -16,7 +16,7 @@ async function getPosts() {
         state.setPosts(response.data);
         ui.renderPosts();
     } catch (err) {
-        console.log(err.message);
+        ui.renderAlert(err.message, 'danger');
     }
 };
 
@@ -37,16 +37,17 @@ async function addPost() {
                 const response = await axios.post(`${BASE_URL}/posts`, post);
                 state.addPost(response.data);
                 ui.createPost(response.data);
-                ui.clearInputs();
                 ui.renderAlert('Post Created', 'success');
             } else {
                 await axios.put(`${BASE_URL}/posts/${state.currentPost.id}`, { title, body });
                 state.updatePost(state.currentPost.id, title, body);
                 ui.updatePost(state.currentPost.id, title, body);
+                ui.renderAlert('Post Updated', 'success');
                 disableEditState();
             }
+            ui.clearInputs();
         } catch (err) {
-            console.log(err);
+            ui.renderAlert(err.message, 'danger');
         }
 
     } else {
@@ -62,6 +63,7 @@ document.querySelector('#posts').addEventListener('click', async (event) => {
             await axios.delete(`${BASE_URL}/posts/${postId}`);
             state.removePost(postId);
             ui.removePost(postId);
+            ui.renderAlert('Post Deleted', 'success');
         } catch (err) {
             ui.renderAlert(err.message, 'danger');
         }
@@ -71,7 +73,6 @@ document.querySelector('#posts').addEventListener('click', async (event) => {
         const postId = event.target.parentElement.parentElement.id.replace('post-', '').trim();
         const post = state.getPostById(postId);
         enableEditState(post);
-
     }
 });
 

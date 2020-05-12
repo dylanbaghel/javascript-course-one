@@ -71,6 +71,10 @@ class UI {
         alertDiv.appendChild(alertDismissButton);
 
         this.postsContainer.insertBefore(alertDiv, this.postsContainer.firstChild);
+
+        setTimeout(() => {
+            alertDiv.remove();
+        }, 2000);
     }
 
     renderEditState() {
